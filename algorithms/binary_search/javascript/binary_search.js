@@ -1,16 +1,11 @@
-function binarySearch(ar, el, compare_fn) {
-    var m = 0;
-    var n = ar.length - 1;
-    while (m <= n) {
-        var k = (n + m) >> 1;
-        var cmp = compare_fn(el, ar[k]);
-        if (cmp > 0) {
-            m = k + 1;
-        } else if(cmp < 0) {
-            n = k - 1;
-        } else {
-            return k;
-        }
+function binarySearch( arr, elem ) {
+    var start = 0;
+    var end = arr.length - 1;
+    var middle = Math.floor( ( start + end ) / 2 );
+    while ( arr[middle] !== elem && start <= end ) {
+        if ( elem < arr[middle] ) end = middle - 1;
+        else start = middle + 1;
+        middle = Math.floor( ( start + end ) / 2 );
     }
-    return -m - 1;
+    return arr[middle] === elem ? middle : -1;
 }
